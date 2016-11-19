@@ -13,11 +13,21 @@ public class MyMoney extends Money {
         super(price, count);
     }
 
+    /**
+     * 折扣
+     * @param value
+     * @return
+     */
     public MyMoney discount(final float value){
         addFactor((long originalCost) -> (long)Math.floor(originalCost * value));
         return this;
     }
 
+    /**
+     * 抵扣券
+     * @param deduct
+     * @return
+     */
     public MyMoney coupon(final long deduct){
         addFactor((long originalCost) -> originalCost - Math.min(originalCost, deduct));
         return this;
